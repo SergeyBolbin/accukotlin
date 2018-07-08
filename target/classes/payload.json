@@ -1,0 +1,44 @@
+{
+  "Headline": {
+    "EffectiveDate": "2018-07-08T07:00:00+03:00",
+    "EffectiveEpochDate": 1531022400,
+    "Severity": 4,
+    "Text": "Pleasant Sunday",
+    "Category": "",
+    "EndDate": null,
+    "EndEpochDate": null,
+    "MobileLink": "http://m.accuweather.com/en/ru/vyksa/289481/extended-weather-forecast/289481?unit=c&lang=en-us",
+    "Link": "http://www.accuweather.com/en/ru/vyksa/289481/daily-weather-forecast/289481?unit=c&lang=en-us"
+  },
+  "DailyForecasts": [
+    {
+      "Date": "2018-07-05T07:00:00+03:00",
+      "EpochDate": 1530763200,
+      "Temperature": {
+        "Minimum": {
+          "Value": 12.8,
+          "Unit": "C",
+          "UnitType": 17
+        },
+        "Maximum": {
+          "Value": 21.5,
+          "Unit": "C",
+          "UnitType": 17
+        }
+      },
+      "Day": {
+        "Icon": 14,
+        "IconPhrase": "Partly sunny w/ showers"
+      },
+      "Night": {
+        "Icon": 34,
+        "IconPhrase": "Mostly clear"
+      },
+      "Sources": [
+        "AccuWeather"
+      ],
+      "MobileLink": "http://m.accuweather.com/en/ru/vyksa/289481/daily-weather-forecast/289481?day=1&unit=c&lang=en-us",
+      "Link": "http://www.accuweather.com/en/ru/vyksa/289481/daily-weather-forecast/289481?day=1&unit=c&lang=en-us"
+    }
+  ]
+}
