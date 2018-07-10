@@ -1,4 +1,4 @@
-package com.sbolbin.accukotlin
+package com.sbolbin.accukotlin.accuweather
 
 import com.fasterxml.jackson.annotation.JsonProperty
 
