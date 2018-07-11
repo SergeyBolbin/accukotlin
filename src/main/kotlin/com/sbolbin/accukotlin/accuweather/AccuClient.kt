@@ -22,12 +22,12 @@ class AccuClient(val appKey: String) {
         return dailyPayload.dailyForecasts[0]
     }
 
-    fun searchCity(query: String): CitySearch? {
+    fun searchCity(query: String): CitySearchItem? {
         val uri = "$host/locations/v1/cities/search"
         val params = hashMapOf("apikey" to appKey, "q" to query, "language" to "ru-ru")
         val response = httpGet(uri, params)
-        val searchResults: Array<CitySearch> = handleResponse(response, Array<CitySearch>::class.java)
-        return if (searchResults.isEmpty()) null else searchResults[0]
+        val searchItemResults: Array<CitySearchItem> = handleResponse(response, Array<CitySearchItem>::class.java)
+        return if (searchItemResults.isEmpty()) null else searchItemResults[0]
     }
 
     private fun httpGet(uriStr: String, params: Map<String, String>): CloseableHttpResponse {

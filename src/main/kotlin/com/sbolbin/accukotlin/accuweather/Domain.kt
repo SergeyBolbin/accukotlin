@@ -30,7 +30,7 @@ data class Description(
         val iconPhrase: String
 )
 
-data class CitySearch(
+data class CitySearchItem(
     val key: String,
     val type: String,
 
@@ -38,6 +38,33 @@ data class CitySearch(
     val localizedName: String,
 
     @JsonProperty("EnglishName")
-    val englishName: String
+    val englishName: String,
 
+    val country: Country,
+
+    @JsonProperty("AdministrativeArea")
+    val administrativeArea: AdministrativeArea
+)
+
+data class Country (
+        @JsonProperty("LocalizedName")
+        val localizedName: String,
+
+        @JsonProperty("EnglishName")
+        val englishName: String
+
+)
+
+data class  AdministrativeArea(
+        @JsonProperty("LocalizedName")
+        val localizedName: String,
+
+        @JsonProperty("EnglishName")
+        val englishName: String,
+
+        @JsonProperty("LocalizedType")
+        val localizedType: String,
+
+        @JsonProperty("EnglishType")
+        val englishType: String
 )

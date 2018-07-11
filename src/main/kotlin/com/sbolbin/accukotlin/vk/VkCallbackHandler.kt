@@ -22,7 +22,7 @@ class VkCallbackHandler(client: VkApiClient?,
             val city = accuClient.searchCity(message.body)
             if (city != null) {
                 val forecast = accuClient.getForecast(city.key)
-                val text = forecastToMessageText(forecast, city.localizedName)
+                val text = forecastToMessageText(forecast, city)
                 sendMessage(message.userId, text)
             } else {
                 sendMessage(message.userId, "Извини, братан, твой город я не нашел :(")
