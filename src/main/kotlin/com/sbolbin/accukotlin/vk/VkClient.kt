@@ -1,14 +1,14 @@
 package com.sbolbin.accukotlin.vk
 
+import com.sbolbin.accukotlin.accuweather.AccuClient
 import com.vk.api.sdk.client.VkApiClient
 import com.vk.api.sdk.client.actors.GroupActor
 import com.vk.api.sdk.httpclient.HttpTransportClient
 import org.slf4j.LoggerFactory
 import java.util.*
 
-class VkClient(val groupId: Int, val token: String) {
+class VkClient(val groupId: Int, val token: String, val accuClient: AccuClient) {
     private val log = LoggerFactory.getLogger(VkClient::class.java)
-    private val random = Random()
 
     fun runHandler() {
         val transportClient = HttpTransportClient.getInstance()
@@ -23,7 +23,7 @@ class VkClient(val groupId: Int, val token: String) {
                 .messageAllow(true)
                 .execute()
 
-        val handler = VkCallbackHandler(vkApiClient, groupActor)
+        val handler = VkCallbackHandler(vkApiClient, groupActor, accuClient)
         handler.run()
     }
 

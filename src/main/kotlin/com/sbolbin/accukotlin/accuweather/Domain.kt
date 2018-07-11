@@ -29,3 +29,15 @@ data class Description(
         @JsonProperty("IconPhrase")
         val iconPhrase: String
 )
+
+data class CitySearch(
+    val key: String,
+    val type: String,
+
+    @JsonProperty("LocalizedName")
+    val localizedName: String,
+
+    @JsonProperty("EnglishName")
+    val englishName: String
+
+)

@@ -22,12 +22,19 @@ class AccuClient(val appKey: String) {
         return dailyPayload.dailyForecasts[0]
     }
 
+    fun searchCity(query: String): CitySearch? {
+        val uri = "$host/locations/v1/cities/search"
+        val params = hashMapOf("apikey" to appKey, "q" to query, "language" to "ru-ru")
+        val response = httpGet(uri, params)
+        val searchResults: Array<CitySearch> = handleResponse(response, Array<CitySearch>::class.java)
+        return if (searchResults.isEmpty()) null else searchResults[0]
+    }
+
     private fun httpGet(uriStr: String, params: Map<String, String>): CloseableHttpResponse {
         val uri = URIBuilder(uriStr)
         for ((name, value) in params) {
             uri.setParameter(name, value)
         }
-
         return client.execute(HttpGet(uri.build()))
     }
 
@@ -36,7 +43,7 @@ class AccuClient(val appKey: String) {
             val statusCode = response.statusLine.statusCode
             if (statusCode == 200) {
                 val responseBodyAsString = EntityUtils.toString(response.entity)
-                return mapper.readValue(responseBodyAsString, clazz)
+                return  mapper.readValue(responseBodyAsString, clazz)
             } else {
                 val message = "Accuweather responds with ${response.statusLine}"
                 log.error(message)
@@ -44,6 +51,4 @@ class AccuClient(val appKey: String) {
             }
         }
     }
-
-
 }

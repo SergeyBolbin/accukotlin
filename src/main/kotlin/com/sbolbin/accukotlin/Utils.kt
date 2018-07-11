@@ -13,8 +13,8 @@ fun configureObjectMapper(): ObjectMapper {
     return mapper
 }
 
-fun forecastToMessageText(forecast: DailyForecast): String {
-    return "Погода в Выксе  ${forecast.date}: <br>" +
+fun forecastToMessageText(forecast: DailyForecast, city: String): String {
+    return "Погода в $city  ${forecast.date}: <br>" +
             "температура: от ${forecast.temperature.minimum.value}${forecast.temperature.minimum.unit} " +
             "до ${forecast.temperature.maximum.value}${forecast.temperature.maximum.unit}, <br>" +
             "днем: ${forecast.day.iconPhrase.toLowerCase()}, <br>" +
