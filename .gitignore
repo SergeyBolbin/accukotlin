@@ -1,0 +1,13 @@
+/target/
+*/target/
+*/build/
+/build/
+*/out/
+
+log*
+!log*.xml
+
+.idea
+*.iws
+*.iml
+*.ipr
