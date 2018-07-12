@@ -6,6 +6,9 @@ import com.fasterxml.jackson.databind.PropertyNamingStrategy
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.sbolbin.accukotlin.accuweather.CitySearchItem
 import com.sbolbin.accukotlin.accuweather.DailyForecast
+import java.util.*
+
+internal object Empty
 
 fun configureObjectMapper(): ObjectMapper {
     val mapper = jacksonObjectMapper()
@@ -24,3 +27,12 @@ fun forecastToMessageText(forecast: DailyForecast, cityItem: CitySearchItem): St
             "днем: ${forecast.day.iconPhrase.toLowerCase()}, <br>" +
             "ночью: ${forecast.night.iconPhrase.toLowerCase()}"
 }
+
+fun readPropertiesFromClasspath(propertiesFileName: String): Properties {
+    return Properties().apply {
+        Empty::class.java.classLoader.getResourceAsStream(propertiesFileName).use { stream ->
+            load(stream)
+        }
+    }
+}
+

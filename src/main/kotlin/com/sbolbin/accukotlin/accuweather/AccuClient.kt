@@ -8,15 +8,14 @@ import org.apache.http.impl.client.HttpClients
 import org.apache.http.util.EntityUtils
 import org.slf4j.LoggerFactory
 
-class AccuClient(val appKey: String) {
+class AccuClient(val apiKey: String, val host: String, val lang: String) {
     private val log = LoggerFactory.getLogger(AccuClient::class.java)
     private val client = HttpClients.createDefault()
     private val mapper = configureObjectMapper()
-    private val host = "http://dataservice.accuweather.com"
 
     fun getForecast(cityKey: String): DailyForecast {
         val uri = "$host/forecasts/v1/daily/1day/$cityKey"
-        val params = hashMapOf("apikey" to appKey, "metric" to "true", "language" to "ru-ru")
+        val params = hashMapOf("apikey" to apiKey, "metric" to "true", "language" to lang)
         val response = httpGet(uri, params)
         val dailyPayload = handleResponse(response, DailyPayload::class.java)
         return dailyPayload.dailyForecasts[0]
@@ -24,7 +23,7 @@ class AccuClient(val appKey: String) {
 
     fun searchCity(query: String): CitySearchItem? {
         val uri = "$host/locations/v1/cities/search"
-        val params = hashMapOf("apikey" to appKey, "q" to query, "language" to "ru-ru")
+        val params = hashMapOf("apikey" to apiKey, "q" to query, "language" to lang)
         val response = httpGet(uri, params)
         val searchItemResults: Array<CitySearchItem> = handleResponse(response, Array<CitySearchItem>::class.java)
         return if (searchItemResults.isEmpty()) null else searchItemResults[0]
